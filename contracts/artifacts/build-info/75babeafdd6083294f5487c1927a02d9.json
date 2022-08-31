@@ -1,0 +1,3497 @@
+{
+	"id": "75babeafdd6083294f5487c1927a02d9",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.4.26",
+	"solcLongVersion": "0.4.26+commit.4563c3fc",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/StateTransV2.sol": {
+				"content": "pragma solidity ^0.4.0;\r\n\r\ncontract StateTransV2{\r\n\r\n    enum Stage {Init, Reg, Vote, Done}\r\n    Stage public stage;\r\n    uint startTime;\r\n    uint public timeNow;\r\n\r\n    function StateTransV2() public{\r\n        stage = Stage.Init;\r\n        startTime = now;\r\n    }\r\n\r\n    function advanceState() public{\r\n        timeNow = now;\r\n        if ( timeNow >= ( startTime+10 seconds)){\r\n            startTime = timeNow;\r\n            if(stage == Stage.Init){stage = Stage.Reg; return;}\r\n            if(stage == Stage.Reg){ stage = Stage.Vote; return;}\r\n            if(stage == Stage.Vote){ stage = Stage.Done; return;}\r\n            return;\r\n        }\r\n    }\r\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/StateTransV2.sol": {
+				"StateTransV2": {
+					"abi": [
+						{
+							"constant": false,
+							"inputs": [],
+							"name": "advanceState",
+							"outputs": [],
+							"payable": false,
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "stage",
+							"outputs": [
+								{
+									"name": "",
+									"type": "uint8"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "timeNow",
+							"outputs": [
+								{
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"payable": false,
+							"stateMutability": "nonpayable",
+							"type": "constructor"
+						}
+					],
+					"devdoc": {
+						"methods": {}
+					},
+					"evm": {
+						"assembly": "    /* \"contracts/StateTransV2.sol\":27:652  contract StateTransV2{\r... */\n  mstore(0x40, 0x80)\n    /* \"contracts/StateTransV2.sol\":171:264  function StateTransV2() public{\r... */\n  callvalue\n    /* \"--CODEGEN--\":8:17   */\n  dup1\n    /* \"--CODEGEN--\":5:7   */\n  iszero\n  tag_1\n  jumpi\n    /* \"--CODEGEN--\":30:31   */\n  0x0\n    /* \"--CODEGEN--\":27:28   */\n  dup1\n    /* \"--CODEGEN--\":20:32   */\n  revert\n    /* \"--CODEGEN--\":5:7   */\ntag_1:\n    /* \"contracts/StateTransV2.sol\":171:264  function StateTransV2() public{\r... */\n  pop\n    /* \"contracts/StateTransV2.sol\":220:230  Stage.Init */\n  0x0\n    /* \"contracts/StateTransV2.sol\":212:217  stage */\n  dup1\n  0x0\n    /* \"contracts/StateTransV2.sol\":212:230  stage = Stage.Init */\n  0x100\n  exp\n  dup2\n  sload\n  dup2\n  0xff\n  mul\n  not\n  and\n  swap1\n  dup4\n  0x3\n  dup2\n  gt\n  iszero\n  tag_4\n  jumpi\n  invalid\ntag_4:\n  mul\n  or\n  swap1\n  sstore\n  pop\n    /* \"contracts/StateTransV2.sol\":253:256  now */\n  timestamp\n    /* \"contracts/StateTransV2.sol\":241:250  startTime */\n  0x1\n    /* \"contracts/StateTransV2.sol\":241:256  startTime = now */\n  dup2\n  swap1\n  sstore\n  pop\n    /* \"contracts/StateTransV2.sol\":27:652  contract StateTransV2{\r... */\n  dataSize(sub_0)\n  dup1\n  dataOffset(sub_0)\n  0x0\n  codecopy\n  0x0\n  return\nstop\n\nsub_0: assembly {\n        /* \"contracts/StateTransV2.sol\":27:652  contract StateTransV2{\r... */\n      mstore(0x40, 0x80)\n      jumpi(tag_1, lt(calldatasize, 0x4))\n      calldataload(0x0)\n      0x100000000000000000000000000000000000000000000000000000000\n      swap1\n      div\n      0xffffffff\n      and\n      dup1\n      0x84ecdaf6\n      eq\n      tag_2\n      jumpi\n      dup1\n      0xc040e6b8\n      eq\n      tag_3\n      jumpi\n      dup1\n      0xd95660be\n      eq\n      tag_4\n      jumpi\n    tag_1:\n      0x0\n      dup1\n      revert\n        /* \"contracts/StateTransV2.sol\":272:649  function advanceState() public{\r... */\n    tag_2:\n      callvalue\n        /* \"--CODEGEN--\":8:17   */\n      dup1\n        /* \"--CODEGEN--\":5:7   */\n      iszero\n      tag_5\n      jumpi\n        /* \"--CODEGEN--\":30:31   */\n      0x0\n        /* \"--CODEGEN--\":27:28   */\n      dup1\n        /* \"--CODEGEN--\":20:32   */\n      revert\n        /* \"--CODEGEN--\":5:7   */\n    tag_5:\n        /* \"contracts/StateTransV2.sol\":272:649  function advanceState() public{\r... */\n      pop\n      tag_6\n      jump(tag_7)\n    tag_6:\n      stop\n        /* \"contracts/StateTransV2.sol\":97:115  Stage public stage */\n    tag_3:\n      callvalue\n        /* \"--CODEGEN--\":8:17   */\n      dup1\n        /* \"--CODEGEN--\":5:7   */\n      iszero\n      tag_8\n      jumpi\n        /* \"--CODEGEN--\":30:31   */\n      0x0\n        /* \"--CODEGEN--\":27:28   */\n      dup1\n        /* \"--CODEGEN--\":20:32   */\n      revert\n        /* \"--CODEGEN--\":5:7   */\n    tag_8:\n        /* \"contracts/StateTransV2.sol\":97:115  Stage public stage */\n      pop\n      tag_9\n      jump(tag_10)\n    tag_9:\n      mload(0x40)\n      dup1\n      dup3\n      0x3\n      dup2\n      gt\n      iszero\n      tag_11\n      jumpi\n      invalid\n    tag_11:\n      0xff\n      and\n      dup2\n      mstore\n      0x20\n      add\n      swap2\n      pop\n      pop\n      mload(0x40)\n      dup1\n      swap2\n      sub\n      swap1\n      return\n        /* \"contracts/StateTransV2.sol\":143:162  uint public timeNow */\n    tag_4:\n      callvalue\n        /* \"--CODEGEN--\":8:17   */\n      dup1\n        /* \"--CODEGEN--\":5:7   */\n      iszero\n      tag_12\n      jumpi\n        /* \"--CODEGEN--\":30:31   */\n      0x0\n        /* \"--CODEGEN--\":27:28   */\n      dup1\n        /* \"--CODEGEN--\":20:32   */\n      revert\n        /* \"--CODEGEN--\":5:7   */\n    tag_12:\n        /* \"contracts/StateTransV2.sol\":143:162  uint public timeNow */\n      pop\n      tag_13\n      jump(tag_14)\n    tag_13:\n      mload(0x40)\n      dup1\n      dup3\n      dup2\n      mstore\n      0x20\n      add\n      swap2\n      pop\n      pop\n      mload(0x40)\n      dup1\n      swap2\n      sub\n      swap1\n      return\n        /* \"contracts/StateTransV2.sol\":272:649  function advanceState() public{\r... */\n    tag_7:\n        /* \"contracts/StateTransV2.sol\":323:326  now */\n      timestamp\n        /* \"contracts/StateTransV2.sol\":313:320  timeNow */\n      0x2\n        /* \"contracts/StateTransV2.sol\":313:326  timeNow = now */\n      dup2\n      swap1\n      sstore\n      pop\n        /* \"contracts/StateTransV2.sol\":365:375  10 seconds */\n      0xa\n        /* \"contracts/StateTransV2.sol\":355:364  startTime */\n      sload(0x1)\n        /* \"contracts/StateTransV2.sol\":355:375  startTime+10 seconds */\n      add\n        /* \"contracts/StateTransV2.sol\":342:349  timeNow */\n      sload(0x2)\n        /* \"contracts/StateTransV2.sol\":342:376  timeNow >= ( startTime+10 seconds) */\n      lt\n      iszero\n        /* \"contracts/StateTransV2.sol\":337:642  if ( timeNow >= ( startTime+10 seconds)){\r... */\n      iszero\n      tag_16\n      jumpi\n        /* \"contracts/StateTransV2.sol\":404:411  timeNow */\n      sload(0x2)\n        /* \"contracts/StateTransV2.sol\":392:401  startTime */\n      0x1\n        /* \"contracts/StateTransV2.sol\":392:411  startTime = timeNow */\n      dup2\n      swap1\n      sstore\n      pop\n        /* \"contracts/StateTransV2.sol\":438:448  Stage.Init */\n      0x0\n        /* \"contracts/StateTransV2.sol\":429:448  stage == Stage.Init */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_17\n      jumpi\n      invalid\n    tag_17:\n        /* \"contracts/StateTransV2.sol\":429:434  stage */\n      0x0\n      dup1\n      swap1\n      sload\n      swap1\n      0x100\n      exp\n      swap1\n      div\n      0xff\n      and\n        /* \"contracts/StateTransV2.sol\":429:448  stage == Stage.Init */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_18\n      jumpi\n      invalid\n    tag_18:\n      eq\n        /* \"contracts/StateTransV2.sol\":426:477  if(stage == Stage.Init){stage = Stage.Reg; return;} */\n      iszero\n      tag_19\n      jumpi\n        /* \"contracts/StateTransV2.sol\":458:467  Stage.Reg */\n      0x1\n        /* \"contracts/StateTransV2.sol\":450:455  stage */\n      0x0\n      dup1\n        /* \"contracts/StateTransV2.sol\":450:467  stage = Stage.Reg */\n      0x100\n      exp\n      dup2\n      sload\n      dup2\n      0xff\n      mul\n      not\n      and\n      swap1\n      dup4\n      0x3\n      dup2\n      gt\n      iszero\n      tag_20\n      jumpi\n      invalid\n    tag_20:\n      mul\n      or\n      swap1\n      sstore\n      pop\n        /* \"contracts/StateTransV2.sol\":469:476  return; */\n      jump(tag_15)\n        /* \"contracts/StateTransV2.sol\":426:477  if(stage == Stage.Init){stage = Stage.Reg; return;} */\n    tag_19:\n        /* \"contracts/StateTransV2.sol\":503:512  Stage.Reg */\n      0x1\n        /* \"contracts/StateTransV2.sol\":494:512  stage == Stage.Reg */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_21\n      jumpi\n      invalid\n    tag_21:\n        /* \"contracts/StateTransV2.sol\":494:499  stage */\n      0x0\n      dup1\n      swap1\n      sload\n      swap1\n      0x100\n      exp\n      swap1\n      div\n      0xff\n      and\n        /* \"contracts/StateTransV2.sol\":494:512  stage == Stage.Reg */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_22\n      jumpi\n      invalid\n    tag_22:\n      eq\n        /* \"contracts/StateTransV2.sol\":491:543  if(stage == Stage.Reg){ stage = Stage.Vote; return;} */\n      iszero\n      tag_23\n      jumpi\n        /* \"contracts/StateTransV2.sol\":523:533  Stage.Vote */\n      0x2\n        /* \"contracts/StateTransV2.sol\":515:520  stage */\n      0x0\n      dup1\n        /* \"contracts/StateTransV2.sol\":515:533  stage = Stage.Vote */\n      0x100\n      exp\n      dup2\n      sload\n      dup2\n      0xff\n      mul\n      not\n      and\n      swap1\n      dup4\n      0x3\n      dup2\n      gt\n      iszero\n      tag_24\n      jumpi\n      invalid\n    tag_24:\n      mul\n      or\n      swap1\n      sstore\n      pop\n        /* \"contracts/StateTransV2.sol\":535:542  return; */\n      jump(tag_15)\n        /* \"contracts/StateTransV2.sol\":491:543  if(stage == Stage.Reg){ stage = Stage.Vote; return;} */\n    tag_23:\n        /* \"contracts/StateTransV2.sol\":569:579  Stage.Vote */\n      0x2\n        /* \"contracts/StateTransV2.sol\":560:579  stage == Stage.Vote */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_25\n      jumpi\n      invalid\n    tag_25:\n        /* \"contracts/StateTransV2.sol\":560:565  stage */\n      0x0\n      dup1\n      swap1\n      sload\n      swap1\n      0x100\n      exp\n      swap1\n      div\n      0xff\n      and\n        /* \"contracts/StateTransV2.sol\":560:579  stage == Stage.Vote */\n      0x3\n      dup2\n      gt\n      iszero\n      tag_26\n      jumpi\n      invalid\n    tag_26:\n      eq\n        /* \"contracts/StateTransV2.sol\":557:610  if(stage == Stage.Vote){ stage = Stage.Done; return;} */\n      iszero\n      tag_27\n      jumpi\n        /* \"contracts/StateTransV2.sol\":590:600  Stage.Done */\n      0x3\n        /* \"contracts/StateTransV2.sol\":582:587  stage */\n      0x0\n      dup1\n        /* \"contracts/StateTransV2.sol\":582:600  stage = Stage.Done */\n      0x100\n      exp\n      dup2\n      sload\n      dup2\n      0xff\n      mul\n      not\n      and\n      swap1\n      dup4\n      0x3\n      dup2\n      gt\n      iszero\n      tag_28\n      jumpi\n      invalid\n    tag_28:\n      mul\n      or\n      swap1\n      sstore\n      pop\n        /* \"contracts/StateTransV2.sol\":602:609  return; */\n      jump(tag_15)\n        /* \"contracts/StateTransV2.sol\":557:610  if(stage == Stage.Vote){ stage = Stage.Done; return;} */\n    tag_27:\n        /* \"contracts/StateTransV2.sol\":624:631  return; */\n      jump(tag_15)\n        /* \"contracts/StateTransV2.sol\":337:642  if ( timeNow >= ( startTime+10 seconds)){\r... */\n    tag_16:\n        /* \"contracts/StateTransV2.sol\":272:649  function advanceState() public{\r... */\n    tag_15:\n      jump\t// out\n        /* \"contracts/StateTransV2.sol\":97:115  Stage public stage */\n    tag_10:\n      0x0\n      dup1\n      swap1\n      sload\n      swap1\n      0x100\n      exp\n      swap1\n      div\n      0xff\n      and\n      dup2\n      jump\t// out\n        /* \"contracts/StateTransV2.sol\":143:162  uint public timeNow */\n    tag_14:\n      sload(0x2)\n      dup2\n      jump\t// out\n\n    auxdata: 0xa165627a7a723058209f8908fa4b78e32c4182bde9f4a8cb7ea477521a2392da7894f980907fbb58cb0029\n}\n",
+						"bytecode": {
+							"linkReferences": {},
+							"object": "608060405234801561001057600080fd5b5060008060006101000a81548160ff0219169083600381111561002f57fe5b0217905550426001819055506102428061004a6000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806384ecdaf61461005c578063c040e6b814610073578063d95660be146100ac575b600080fd5b34801561006857600080fd5b506100716100d7565b005b34801561007f57600080fd5b506100886101fe565b6040518082600381111561009857fe5b60ff16815260200191505060405180910390f35b3480156100b857600080fd5b506100c1610210565b6040518082815260200191505060405180910390f35b42600281905550600a600154016002541015156101fb576002546001819055506000600381111561010457fe5b6000809054906101000a900460ff16600381111561011e57fe5b141561014c5760016000806101000a81548160ff0219169083600381111561014257fe5b02179055506101fc565b6001600381111561015957fe5b6000809054906101000a900460ff16600381111561017357fe5b14156101a15760026000806101000a81548160ff0219169083600381111561019757fe5b02179055506101fc565b600260038111156101ae57fe5b6000809054906101000a900460ff1660038111156101c857fe5b14156101f65760036000806101000a81548160ff021916908360038111156101ec57fe5b02179055506101fc565b6101fc565b5b565b6000809054906101000a900460ff1681565b600254815600a165627a7a723058209f8908fa4b78e32c4182bde9f4a8cb7ea477521a2392da7894f980907fbb58cb0029",
+							"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x0 DUP1 PUSH1 0x0 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x2F JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP TIMESTAMP PUSH1 0x1 DUP2 SWAP1 SSTORE POP PUSH2 0x242 DUP1 PUSH2 0x4A PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH2 0x57 JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x84ECDAF6 EQ PUSH2 0x5C JUMPI DUP1 PUSH4 0xC040E6B8 EQ PUSH2 0x73 JUMPI DUP1 PUSH4 0xD95660BE EQ PUSH2 0xAC JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0x68 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x71 PUSH2 0xD7 JUMP JUMPDEST STOP JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0x7F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x88 PUSH2 0x1FE JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 DUP3 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x98 JUMPI INVALID JUMPDEST PUSH1 0xFF AND DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0xB8 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0xC1 PUSH2 0x210 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 DUP3 DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST TIMESTAMP PUSH1 0x2 DUP2 SWAP1 SSTORE POP PUSH1 0xA PUSH1 0x1 SLOAD ADD PUSH1 0x2 SLOAD LT ISZERO ISZERO PUSH2 0x1FB JUMPI PUSH1 0x2 SLOAD PUSH1 0x1 DUP2 SWAP1 SSTORE POP PUSH1 0x0 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x104 JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x11E JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x14C JUMPI PUSH1 0x1 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x142 JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH1 0x1 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x159 JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x173 JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x1A1 JUMPI PUSH1 0x2 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x197 JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH1 0x2 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1AE JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1C8 JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x1F6 JUMPI PUSH1 0x3 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1EC JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH2 0x1FC JUMP JUMPDEST JUMPDEST JUMP JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND DUP2 JUMP JUMPDEST PUSH1 0x2 SLOAD DUP2 JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 SWAP16 DUP10 ADDMOD STATICCALL 0x4b PUSH25 0xE32C4182BDE9F4A8CB7EA477521A2392DA7894F980907FBB58 0xcb STOP 0x29 ",
+							"sourceMap": "27:625:0:-;;;171:93;8:9:-1;5:2;;;30:1;27;20:12;5:2;171:93:0;220:10;212:5;;:18;;;;;;;;;;;;;;;;;;;;;;;;253:3;241:9;:15;;;;27:625;;;;;;"
+						},
+						"deployedBytecode": {
+							"linkReferences": {},
+							"object": "608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806384ecdaf61461005c578063c040e6b814610073578063d95660be146100ac575b600080fd5b34801561006857600080fd5b506100716100d7565b005b34801561007f57600080fd5b506100886101fe565b6040518082600381111561009857fe5b60ff16815260200191505060405180910390f35b3480156100b857600080fd5b506100c1610210565b6040518082815260200191505060405180910390f35b42600281905550600a600154016002541015156101fb576002546001819055506000600381111561010457fe5b6000809054906101000a900460ff16600381111561011e57fe5b141561014c5760016000806101000a81548160ff0219169083600381111561014257fe5b02179055506101fc565b6001600381111561015957fe5b6000809054906101000a900460ff16600381111561017357fe5b14156101a15760026000806101000a81548160ff0219169083600381111561019757fe5b02179055506101fc565b600260038111156101ae57fe5b6000809054906101000a900460ff1660038111156101c857fe5b14156101f65760036000806101000a81548160ff021916908360038111156101ec57fe5b02179055506101fc565b6101fc565b5b565b6000809054906101000a900460ff1681565b600254815600a165627a7a723058209f8908fa4b78e32c4182bde9f4a8cb7ea477521a2392da7894f980907fbb58cb0029",
+							"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH2 0x57 JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x84ECDAF6 EQ PUSH2 0x5C JUMPI DUP1 PUSH4 0xC040E6B8 EQ PUSH2 0x73 JUMPI DUP1 PUSH4 0xD95660BE EQ PUSH2 0xAC JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0x68 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x71 PUSH2 0xD7 JUMP JUMPDEST STOP JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0x7F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x88 PUSH2 0x1FE JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 DUP3 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x98 JUMPI INVALID JUMPDEST PUSH1 0xFF AND DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST CALLVALUE DUP1 ISZERO PUSH2 0xB8 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0xC1 PUSH2 0x210 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 DUP3 DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST TIMESTAMP PUSH1 0x2 DUP2 SWAP1 SSTORE POP PUSH1 0xA PUSH1 0x1 SLOAD ADD PUSH1 0x2 SLOAD LT ISZERO ISZERO PUSH2 0x1FB JUMPI PUSH1 0x2 SLOAD PUSH1 0x1 DUP2 SWAP1 SSTORE POP PUSH1 0x0 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x104 JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x11E JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x14C JUMPI PUSH1 0x1 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x142 JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH1 0x1 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x159 JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x173 JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x1A1 JUMPI PUSH1 0x2 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x197 JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH1 0x2 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1AE JUMPI INVALID JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1C8 JUMPI INVALID JUMPDEST EQ ISZERO PUSH2 0x1F6 JUMPI PUSH1 0x3 PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH1 0xFF MUL NOT AND SWAP1 DUP4 PUSH1 0x3 DUP2 GT ISZERO PUSH2 0x1EC JUMPI INVALID JUMPDEST MUL OR SWAP1 SSTORE POP PUSH2 0x1FC JUMP JUMPDEST PUSH2 0x1FC JUMP JUMPDEST JUMPDEST JUMP JUMPDEST PUSH1 0x0 DUP1 SWAP1 SLOAD SWAP1 PUSH2 0x100 EXP SWAP1 DIV PUSH1 0xFF AND DUP2 JUMP JUMPDEST PUSH1 0x2 SLOAD DUP2 JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 SWAP16 DUP10 ADDMOD STATICCALL 0x4b PUSH25 0xE32C4182BDE9F4A8CB7EA477521A2392DA7894F980907FBB58 0xcb STOP 0x29 ",
+							"sourceMap": "27:625:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;272:377;;8:9:-1;5:2;;;30:1;27;20:12;5:2;272:377:0;;;;;;97:18;;8:9:-1;5:2;;;30:1;27;20:12;5:2;97:18:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;143:19;;8:9:-1;5:2;;;30:1;27;20:12;5:2;143:19:0;;;;;;;;;;;;;;;;;;;;;;;272:377;323:3;313:7;:13;;;;365:10;355:9;;:20;342:7;;:34;;337:305;;;404:7;;392:9;:19;;;;438:10;429:19;;;;;;;;:5;;;;;;;;;;;:19;;;;;;;;;426:51;;;458:9;450:5;;:17;;;;;;;;;;;;;;;;;;;;;;;;469:7;;426:51;503:9;494:18;;;;;;;;:5;;;;;;;;;;;:18;;;;;;;;;491:52;;;523:10;515:5;;:18;;;;;;;;;;;;;;;;;;;;;;;;535:7;;491:52;569:10;560:19;;;;;;;;:5;;;;;;;;;;;:19;;;;;;;;;557:53;;;590:10;582:5;;:18;;;;;;;;;;;;;;;;;;;;;;;;602:7;;557:53;624:7;;337:305;272:377;:::o;97:18::-;;;;;;;;;;;;;:::o;143:19::-;;;;:::o"
+						},
+						"gasEstimates": {
+							"creation": {
+								"codeDepositCost": "115600",
+								"executionCost": "40465",
+								"totalCost": "156065"
+							},
+							"external": {
+								"advanceState()": "62034",
+								"stage()": "484",
+								"timeNow()": "438"
+							}
+						},
+						"legacyAssembly": {
+							".code": [
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH",
+									"value": "80"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH",
+									"value": "40"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "MSTORE"
+								},
+								{
+									"begin": 171,
+									"end": 264,
+									"name": "CALLVALUE"
+								},
+								{
+									"begin": 8,
+									"end": 17,
+									"name": "DUP1"
+								},
+								{
+									"begin": 5,
+									"end": 7,
+									"name": "ISZERO"
+								},
+								{
+									"begin": 5,
+									"end": 7,
+									"name": "PUSH [tag]",
+									"value": "1"
+								},
+								{
+									"begin": 5,
+									"end": 7,
+									"name": "JUMPI"
+								},
+								{
+									"begin": 30,
+									"end": 31,
+									"name": "PUSH",
+									"value": "0"
+								},
+								{
+									"begin": 27,
+									"end": 28,
+									"name": "DUP1"
+								},
+								{
+									"begin": 20,
+									"end": 32,
+									"name": "REVERT"
+								},
+								{
+									"begin": 5,
+									"end": 7,
+									"name": "tag",
+									"value": "1"
+								},
+								{
+									"begin": 5,
+									"end": 7,
+									"name": "JUMPDEST"
+								},
+								{
+									"begin": 171,
+									"end": 264,
+									"name": "POP"
+								},
+								{
+									"begin": 220,
+									"end": 230,
+									"name": "PUSH",
+									"value": "0"
+								},
+								{
+									"begin": 212,
+									"end": 217,
+									"name": "DUP1"
+								},
+								{
+									"begin": 212,
+									"end": 217,
+									"name": "PUSH",
+									"value": "0"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "PUSH",
+									"value": "100"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "EXP"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "DUP2"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "SLOAD"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "DUP2"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "PUSH",
+									"value": "FF"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "MUL"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "NOT"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "AND"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "SWAP1"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "DUP4"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "PUSH",
+									"value": "3"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "DUP2"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "GT"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "ISZERO"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "PUSH [tag]",
+									"value": "4"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "JUMPI"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "INVALID"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "tag",
+									"value": "4"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "JUMPDEST"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "MUL"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "OR"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "SWAP1"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "SSTORE"
+								},
+								{
+									"begin": 212,
+									"end": 230,
+									"name": "POP"
+								},
+								{
+									"begin": 253,
+									"end": 256,
+									"name": "TIMESTAMP"
+								},
+								{
+									"begin": 241,
+									"end": 250,
+									"name": "PUSH",
+									"value": "1"
+								},
+								{
+									"begin": 241,
+									"end": 256,
+									"name": "DUP2"
+								},
+								{
+									"begin": 241,
+									"end": 256,
+									"name": "SWAP1"
+								},
+								{
+									"begin": 241,
+									"end": 256,
+									"name": "SSTORE"
+								},
+								{
+									"begin": 241,
+									"end": 256,
+									"name": "POP"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH #[$]",
+									"value": "0000000000000000000000000000000000000000000000000000000000000000"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "DUP1"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH [$]",
+									"value": "0000000000000000000000000000000000000000000000000000000000000000"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH",
+									"value": "0"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "CODECOPY"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "PUSH",
+									"value": "0"
+								},
+								{
+									"begin": 27,
+									"end": 652,
+									"name": "RETURN"
+								}
+							],
+							".data": {
+								"0": {
+									".auxdata": "a165627a7a723058209f8908fa4b78e32c4182bde9f4a8cb7ea477521a2392da7894f980907fbb58cb0029",
+									".code": [
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "80"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "40"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "MSTORE"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "4"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "CALLDATASIZE"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "LT"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH [tag]",
+											"value": "1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "CALLDATALOAD"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "100000000000000000000000000000000000000000000000000000000"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "DIV"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "FFFFFFFF"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "AND"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "DUP1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "84ECDAF6"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "EQ"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH [tag]",
+											"value": "2"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "DUP1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "C040E6B8"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "EQ"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH [tag]",
+											"value": "3"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "DUP1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "D95660BE"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "EQ"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH [tag]",
+											"value": "4"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "tag",
+											"value": "1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "DUP1"
+										},
+										{
+											"begin": 27,
+											"end": 652,
+											"name": "REVERT"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "tag",
+											"value": "2"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "CALLVALUE"
+										},
+										{
+											"begin": 8,
+											"end": 17,
+											"name": "DUP1"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "PUSH [tag]",
+											"value": "5"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 30,
+											"end": 31,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 27,
+											"end": 28,
+											"name": "DUP1"
+										},
+										{
+											"begin": 20,
+											"end": 32,
+											"name": "REVERT"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "tag",
+											"value": "5"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "POP"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "PUSH [tag]",
+											"value": "6"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "PUSH [tag]",
+											"value": "7"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMP"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "tag",
+											"value": "6"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "STOP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "tag",
+											"value": "3"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "CALLVALUE"
+										},
+										{
+											"begin": 8,
+											"end": 17,
+											"name": "DUP1"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "PUSH [tag]",
+											"value": "8"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 30,
+											"end": 31,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 27,
+											"end": 28,
+											"name": "DUP1"
+										},
+										{
+											"begin": 20,
+											"end": 32,
+											"name": "REVERT"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "tag",
+											"value": "8"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "POP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH [tag]",
+											"value": "9"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH [tag]",
+											"value": "10"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "tag",
+											"value": "9"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "40"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "MLOAD"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP3"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP2"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "GT"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH [tag]",
+											"value": "11"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "INVALID"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "tag",
+											"value": "11"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "AND"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP2"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "MSTORE"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "20"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "ADD"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP2"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "POP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "POP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "40"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "MLOAD"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP2"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SUB"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "RETURN"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "tag",
+											"value": "4"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "CALLVALUE"
+										},
+										{
+											"begin": 8,
+											"end": 17,
+											"name": "DUP1"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "PUSH [tag]",
+											"value": "12"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 30,
+											"end": 31,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 27,
+											"end": 28,
+											"name": "DUP1"
+										},
+										{
+											"begin": 20,
+											"end": 32,
+											"name": "REVERT"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "tag",
+											"value": "12"
+										},
+										{
+											"begin": 5,
+											"end": 7,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "POP"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH [tag]",
+											"value": "13"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH [tag]",
+											"value": "14"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "JUMP"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "tag",
+											"value": "13"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH",
+											"value": "40"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "MLOAD"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "DUP1"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "DUP3"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "DUP2"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "MSTORE"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH",
+											"value": "20"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "ADD"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "SWAP2"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "POP"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "POP"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH",
+											"value": "40"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "MLOAD"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "DUP1"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "SWAP2"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "SUB"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "RETURN"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "tag",
+											"value": "7"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 323,
+											"end": 326,
+											"name": "TIMESTAMP"
+										},
+										{
+											"begin": 313,
+											"end": 320,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 313,
+											"end": 326,
+											"name": "DUP2"
+										},
+										{
+											"begin": 313,
+											"end": 326,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 313,
+											"end": 326,
+											"name": "SSTORE"
+										},
+										{
+											"begin": 313,
+											"end": 326,
+											"name": "POP"
+										},
+										{
+											"begin": 365,
+											"end": 375,
+											"name": "PUSH",
+											"value": "A"
+										},
+										{
+											"begin": 355,
+											"end": 364,
+											"name": "PUSH",
+											"value": "1"
+										},
+										{
+											"begin": 355,
+											"end": 364,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 355,
+											"end": 375,
+											"name": "ADD"
+										},
+										{
+											"begin": 342,
+											"end": 349,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 342,
+											"end": 349,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 342,
+											"end": 376,
+											"name": "LT"
+										},
+										{
+											"begin": 342,
+											"end": 376,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 337,
+											"end": 642,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 337,
+											"end": 642,
+											"name": "PUSH [tag]",
+											"value": "16"
+										},
+										{
+											"begin": 337,
+											"end": 642,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 404,
+											"end": 411,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 404,
+											"end": 411,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 392,
+											"end": 401,
+											"name": "PUSH",
+											"value": "1"
+										},
+										{
+											"begin": 392,
+											"end": 411,
+											"name": "DUP2"
+										},
+										{
+											"begin": 392,
+											"end": 411,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 392,
+											"end": 411,
+											"name": "SSTORE"
+										},
+										{
+											"begin": 392,
+											"end": 411,
+											"name": "POP"
+										},
+										{
+											"begin": 438,
+											"end": 448,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "DUP2"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "GT"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "PUSH [tag]",
+											"value": "17"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "INVALID"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "tag",
+											"value": "17"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "DUP1"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "EXP"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "DIV"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 429,
+											"end": 434,
+											"name": "AND"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "DUP2"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "GT"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "PUSH [tag]",
+											"value": "18"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "INVALID"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "tag",
+											"value": "18"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 429,
+											"end": 448,
+											"name": "EQ"
+										},
+										{
+											"begin": 426,
+											"end": 477,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 426,
+											"end": 477,
+											"name": "PUSH [tag]",
+											"value": "19"
+										},
+										{
+											"begin": 426,
+											"end": 477,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 458,
+											"end": 467,
+											"name": "PUSH",
+											"value": "1"
+										},
+										{
+											"begin": 450,
+											"end": 455,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 450,
+											"end": 455,
+											"name": "DUP1"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "EXP"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "DUP2"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "DUP2"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "MUL"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "NOT"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "AND"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "DUP4"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "DUP2"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "GT"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "PUSH [tag]",
+											"value": "20"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "INVALID"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "tag",
+											"value": "20"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "MUL"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "OR"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "SSTORE"
+										},
+										{
+											"begin": 450,
+											"end": 467,
+											"name": "POP"
+										},
+										{
+											"begin": 469,
+											"end": 476,
+											"name": "PUSH [tag]",
+											"value": "15"
+										},
+										{
+											"begin": 469,
+											"end": 476,
+											"name": "JUMP"
+										},
+										{
+											"begin": 426,
+											"end": 477,
+											"name": "tag",
+											"value": "19"
+										},
+										{
+											"begin": 426,
+											"end": 477,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 503,
+											"end": 512,
+											"name": "PUSH",
+											"value": "1"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "DUP2"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "GT"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "PUSH [tag]",
+											"value": "21"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "INVALID"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "tag",
+											"value": "21"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "DUP1"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "EXP"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "DIV"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 494,
+											"end": 499,
+											"name": "AND"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "DUP2"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "GT"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "PUSH [tag]",
+											"value": "22"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "INVALID"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "tag",
+											"value": "22"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 494,
+											"end": 512,
+											"name": "EQ"
+										},
+										{
+											"begin": 491,
+											"end": 543,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 491,
+											"end": 543,
+											"name": "PUSH [tag]",
+											"value": "23"
+										},
+										{
+											"begin": 491,
+											"end": 543,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 523,
+											"end": 533,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 515,
+											"end": 520,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 515,
+											"end": 520,
+											"name": "DUP1"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "EXP"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "DUP2"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "DUP2"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "MUL"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "NOT"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "AND"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "DUP4"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "DUP2"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "GT"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "PUSH [tag]",
+											"value": "24"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "INVALID"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "tag",
+											"value": "24"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "MUL"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "OR"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "SSTORE"
+										},
+										{
+											"begin": 515,
+											"end": 533,
+											"name": "POP"
+										},
+										{
+											"begin": 535,
+											"end": 542,
+											"name": "PUSH [tag]",
+											"value": "15"
+										},
+										{
+											"begin": 535,
+											"end": 542,
+											"name": "JUMP"
+										},
+										{
+											"begin": 491,
+											"end": 543,
+											"name": "tag",
+											"value": "23"
+										},
+										{
+											"begin": 491,
+											"end": 543,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 569,
+											"end": 579,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "DUP2"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "GT"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "PUSH [tag]",
+											"value": "25"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "INVALID"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "tag",
+											"value": "25"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "DUP1"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "EXP"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "DIV"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 560,
+											"end": 565,
+											"name": "AND"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "DUP2"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "GT"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "PUSH [tag]",
+											"value": "26"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "INVALID"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "tag",
+											"value": "26"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 560,
+											"end": 579,
+											"name": "EQ"
+										},
+										{
+											"begin": 557,
+											"end": 610,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 557,
+											"end": 610,
+											"name": "PUSH [tag]",
+											"value": "27"
+										},
+										{
+											"begin": 557,
+											"end": 610,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 590,
+											"end": 600,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 582,
+											"end": 587,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 582,
+											"end": 587,
+											"name": "DUP1"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "EXP"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "DUP2"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "DUP2"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "MUL"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "NOT"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "AND"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "DUP4"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "PUSH",
+											"value": "3"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "DUP2"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "GT"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "ISZERO"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "PUSH [tag]",
+											"value": "28"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "JUMPI"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "INVALID"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "tag",
+											"value": "28"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "MUL"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "OR"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "SSTORE"
+										},
+										{
+											"begin": 582,
+											"end": 600,
+											"name": "POP"
+										},
+										{
+											"begin": 602,
+											"end": 609,
+											"name": "PUSH [tag]",
+											"value": "15"
+										},
+										{
+											"begin": 602,
+											"end": 609,
+											"name": "JUMP"
+										},
+										{
+											"begin": 557,
+											"end": 610,
+											"name": "tag",
+											"value": "27"
+										},
+										{
+											"begin": 557,
+											"end": 610,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 624,
+											"end": 631,
+											"name": "PUSH [tag]",
+											"value": "15"
+										},
+										{
+											"begin": 624,
+											"end": 631,
+											"name": "JUMP"
+										},
+										{
+											"begin": 337,
+											"end": 642,
+											"name": "tag",
+											"value": "16"
+										},
+										{
+											"begin": 337,
+											"end": 642,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "tag",
+											"value": "15"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 272,
+											"end": 649,
+											"name": "JUMP",
+											"value": "[out]"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "tag",
+											"value": "10"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "0"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "100"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "EXP"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "SWAP1"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DIV"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "PUSH",
+											"value": "FF"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "AND"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "DUP2"
+										},
+										{
+											"begin": 97,
+											"end": 115,
+											"name": "JUMP",
+											"value": "[out]"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "tag",
+											"value": "14"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "JUMPDEST"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "PUSH",
+											"value": "2"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "SLOAD"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "DUP2"
+										},
+										{
+											"begin": 143,
+											"end": 162,
+											"name": "JUMP",
+											"value": "[out]"
+										}
+									]
+								}
+							}
+						},
+						"methodIdentifiers": {
+							"advanceState()": "84ecdaf6",
+							"stage()": "c040e6b8",
+							"timeNow()": "d95660be"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.4.26+commit.4563c3fc\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"advanceState\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"stage\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"timeNow\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"contracts/StateTransV2.sol\":\"StateTransV2\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/StateTransV2.sol\":{\"keccak256\":\"0x9b3be52b1b877cf126868760ee0ee9a64212d17a713a2593d66be429934c6abc\",\"urls\":[\"bzzr://9e46e0bc9863a68f988d6eed01ea4b94c478305ee10b193eb28a93df36d87b54\"]}},\"version\":1}",
+					"userdoc": {
+						"methods": {}
+					}
+				}
+			}
+		},
+		"errors": [
+			{
+				"component": "general",
+				"formattedMessage": "contracts/StateTransV2.sol:10:5: Warning: Defining constructors as functions with the same name as the contract is deprecated. Use \"constructor(...) { ... }\" instead.\n    function StateTransV2() public{\r\n    ^ (Relevant source part starts here and spans across multiple lines).\n",
+				"message": "Defining constructors as functions with the same name as the contract is deprecated. Use \"constructor(...) { ... }\" instead.",
+				"severity": "warning",
+				"sourceLocation": {
+					"end": 264,
+					"file": "contracts/StateTransV2.sol",
+					"start": 171
+				},
+				"type": "Warning"
+			}
+		],
+		"sources": {
+			"contracts/StateTransV2.sol": {
+				"ast": {
+					"absolutePath": "contracts/StateTransV2.sol",
+					"exportedSymbols": {
+						"StateTransV2": [
+							83
+						]
+					},
+					"id": 84,
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.4",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "0:23:0"
+						},
+						{
+							"baseContracts": [],
+							"contractDependencies": [],
+							"contractKind": "contract",
+							"documentation": null,
+							"fullyImplemented": true,
+							"id": 83,
+							"linearizedBaseContracts": [
+								83
+							],
+							"name": "StateTransV2",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"canonicalName": "StateTransV2.Stage",
+									"id": 6,
+									"members": [
+										{
+											"id": 2,
+											"name": "Init",
+											"nodeType": "EnumValue",
+											"src": "69:4:0"
+										},
+										{
+											"id": 3,
+											"name": "Reg",
+											"nodeType": "EnumValue",
+											"src": "75:3:0"
+										},
+										{
+											"id": 4,
+											"name": "Vote",
+											"nodeType": "EnumValue",
+											"src": "80:4:0"
+										},
+										{
+											"id": 5,
+											"name": "Done",
+											"nodeType": "EnumValue",
+											"src": "86:4:0"
+										}
+									],
+									"name": "Stage",
+									"nodeType": "EnumDefinition",
+									"src": "57:34:0"
+								},
+								{
+									"constant": false,
+									"id": 8,
+									"name": "stage",
+									"nodeType": "VariableDeclaration",
+									"scope": 83,
+									"src": "97:18:0",
+									"stateVariable": true,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_enum$_Stage_$6",
+										"typeString": "enum StateTransV2.Stage"
+									},
+									"typeName": {
+										"contractScope": null,
+										"id": 7,
+										"name": "Stage",
+										"nodeType": "UserDefinedTypeName",
+										"referencedDeclaration": 6,
+										"src": "97:5:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_enum$_Stage_$6",
+											"typeString": "enum StateTransV2.Stage"
+										}
+									},
+									"value": null,
+									"visibility": "public"
+								},
+								{
+									"constant": false,
+									"id": 10,
+									"name": "startTime",
+									"nodeType": "VariableDeclaration",
+									"scope": 83,
+									"src": "122:14:0",
+									"stateVariable": true,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 9,
+										"name": "uint",
+										"nodeType": "ElementaryTypeName",
+										"src": "122:4:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"value": null,
+									"visibility": "internal"
+								},
+								{
+									"constant": false,
+									"id": 12,
+									"name": "timeNow",
+									"nodeType": "VariableDeclaration",
+									"scope": 83,
+									"src": "143:19:0",
+									"stateVariable": true,
+									"storageLocation": "default",
+									"typeDescriptions": {
+										"typeIdentifier": "t_uint256",
+										"typeString": "uint256"
+									},
+									"typeName": {
+										"id": 11,
+										"name": "uint",
+										"nodeType": "ElementaryTypeName",
+										"src": "143:4:0",
+										"typeDescriptions": {
+											"typeIdentifier": "t_uint256",
+											"typeString": "uint256"
+										}
+									},
+									"value": null,
+									"visibility": "public"
+								},
+								{
+									"body": {
+										"id": 24,
+										"nodeType": "Block",
+										"src": "201:63:0",
+										"statements": [
+											{
+												"expression": {
+													"argumentTypes": null,
+													"id": 18,
+													"isConstant": false,
+													"isLValue": false,
+													"isPure": false,
+													"lValueRequested": false,
+													"leftHandSide": {
+														"argumentTypes": null,
+														"id": 15,
+														"name": "stage",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 8,
+														"src": "212:5:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_enum$_Stage_$6",
+															"typeString": "enum StateTransV2.Stage"
+														}
+													},
+													"nodeType": "Assignment",
+													"operator": "=",
+													"rightHandSide": {
+														"argumentTypes": null,
+														"expression": {
+															"argumentTypes": null,
+															"id": 16,
+															"name": "Stage",
+															"nodeType": "Identifier",
+															"overloadedDeclarations": [],
+															"referencedDeclaration": 6,
+															"src": "220:5:0",
+															"typeDescriptions": {
+																"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																"typeString": "type(enum StateTransV2.Stage)"
+															}
+														},
+														"id": 17,
+														"isConstant": false,
+														"isLValue": false,
+														"isPure": true,
+														"lValueRequested": false,
+														"memberName": "Init",
+														"nodeType": "MemberAccess",
+														"referencedDeclaration": null,
+														"src": "220:10:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_enum$_Stage_$6",
+															"typeString": "enum StateTransV2.Stage"
+														}
+													},
+													"src": "212:18:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_enum$_Stage_$6",
+														"typeString": "enum StateTransV2.Stage"
+													}
+												},
+												"id": 19,
+												"nodeType": "ExpressionStatement",
+												"src": "212:18:0"
+											},
+											{
+												"expression": {
+													"argumentTypes": null,
+													"id": 22,
+													"isConstant": false,
+													"isLValue": false,
+													"isPure": false,
+													"lValueRequested": false,
+													"leftHandSide": {
+														"argumentTypes": null,
+														"id": 20,
+														"name": "startTime",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 10,
+														"src": "241:9:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"nodeType": "Assignment",
+													"operator": "=",
+													"rightHandSide": {
+														"argumentTypes": null,
+														"id": 21,
+														"name": "now",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 100,
+														"src": "253:3:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"src": "241:15:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"id": 23,
+												"nodeType": "ExpressionStatement",
+												"src": "241:15:0"
+											}
+										]
+									},
+									"documentation": null,
+									"id": 25,
+									"implemented": true,
+									"isConstructor": true,
+									"isDeclaredConst": false,
+									"modifiers": [],
+									"name": "StateTransV2",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 13,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "192:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 14,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "201:0:0"
+									},
+									"scope": 83,
+									"src": "171:93:0",
+									"stateMutability": "nonpayable",
+									"superFunction": null,
+									"visibility": "public"
+								},
+								{
+									"body": {
+										"id": 81,
+										"nodeType": "Block",
+										"src": "302:347:0",
+										"statements": [
+											{
+												"expression": {
+													"argumentTypes": null,
+													"id": 30,
+													"isConstant": false,
+													"isLValue": false,
+													"isPure": false,
+													"lValueRequested": false,
+													"leftHandSide": {
+														"argumentTypes": null,
+														"id": 28,
+														"name": "timeNow",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 12,
+														"src": "313:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"nodeType": "Assignment",
+													"operator": "=",
+													"rightHandSide": {
+														"argumentTypes": null,
+														"id": 29,
+														"name": "now",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 100,
+														"src": "323:3:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"src": "313:13:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"id": 31,
+												"nodeType": "ExpressionStatement",
+												"src": "313:13:0"
+											},
+											{
+												"condition": {
+													"argumentTypes": null,
+													"commonType": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													},
+													"id": 37,
+													"isConstant": false,
+													"isLValue": false,
+													"isPure": false,
+													"lValueRequested": false,
+													"leftExpression": {
+														"argumentTypes": null,
+														"id": 32,
+														"name": "timeNow",
+														"nodeType": "Identifier",
+														"overloadedDeclarations": [],
+														"referencedDeclaration": 12,
+														"src": "342:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"nodeType": "BinaryOperation",
+													"operator": ">=",
+													"rightExpression": {
+														"argumentTypes": null,
+														"components": [
+															{
+																"argumentTypes": null,
+																"commonType": {
+																	"typeIdentifier": "t_uint256",
+																	"typeString": "uint256"
+																},
+																"id": 35,
+																"isConstant": false,
+																"isLValue": false,
+																"isPure": false,
+																"lValueRequested": false,
+																"leftExpression": {
+																	"argumentTypes": null,
+																	"id": 33,
+																	"name": "startTime",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 10,
+																	"src": "355:9:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_uint256",
+																		"typeString": "uint256"
+																	}
+																},
+																"nodeType": "BinaryOperation",
+																"operator": "+",
+																"rightExpression": {
+																	"argumentTypes": null,
+																	"hexValue": "3130",
+																	"id": 34,
+																	"isConstant": false,
+																	"isLValue": false,
+																	"isPure": true,
+																	"kind": "number",
+																	"lValueRequested": false,
+																	"nodeType": "Literal",
+																	"src": "365:10:0",
+																	"subdenomination": "seconds",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_rational_10_by_1",
+																		"typeString": "int_const 10"
+																	},
+																	"value": "10"
+																},
+																"src": "355:20:0",
+																"typeDescriptions": {
+																	"typeIdentifier": "t_uint256",
+																	"typeString": "uint256"
+																}
+															}
+														],
+														"id": 36,
+														"isConstant": false,
+														"isInlineArray": false,
+														"isLValue": false,
+														"isPure": false,
+														"lValueRequested": false,
+														"nodeType": "TupleExpression",
+														"src": "353:23:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"src": "342:34:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"falseBody": null,
+												"id": 80,
+												"nodeType": "IfStatement",
+												"src": "337:305:0",
+												"trueBody": {
+													"id": 79,
+													"nodeType": "Block",
+													"src": "377:265:0",
+													"statements": [
+														{
+															"expression": {
+																"argumentTypes": null,
+																"id": 40,
+																"isConstant": false,
+																"isLValue": false,
+																"isPure": false,
+																"lValueRequested": false,
+																"leftHandSide": {
+																	"argumentTypes": null,
+																	"id": 38,
+																	"name": "startTime",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 10,
+																	"src": "392:9:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_uint256",
+																		"typeString": "uint256"
+																	}
+																},
+																"nodeType": "Assignment",
+																"operator": "=",
+																"rightHandSide": {
+																	"argumentTypes": null,
+																	"id": 39,
+																	"name": "timeNow",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 12,
+																	"src": "404:7:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_uint256",
+																		"typeString": "uint256"
+																	}
+																},
+																"src": "392:19:0",
+																"typeDescriptions": {
+																	"typeIdentifier": "t_uint256",
+																	"typeString": "uint256"
+																}
+															},
+															"id": 41,
+															"nodeType": "ExpressionStatement",
+															"src": "392:19:0"
+														},
+														{
+															"condition": {
+																"argumentTypes": null,
+																"commonType": {
+																	"typeIdentifier": "t_enum$_Stage_$6",
+																	"typeString": "enum StateTransV2.Stage"
+																},
+																"id": 45,
+																"isConstant": false,
+																"isLValue": false,
+																"isPure": false,
+																"lValueRequested": false,
+																"leftExpression": {
+																	"argumentTypes": null,
+																	"id": 42,
+																	"name": "stage",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 8,
+																	"src": "429:5:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"nodeType": "BinaryOperation",
+																"operator": "==",
+																"rightExpression": {
+																	"argumentTypes": null,
+																	"expression": {
+																		"argumentTypes": null,
+																		"id": 43,
+																		"name": "Stage",
+																		"nodeType": "Identifier",
+																		"overloadedDeclarations": [],
+																		"referencedDeclaration": 6,
+																		"src": "438:5:0",
+																		"typeDescriptions": {
+																			"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																			"typeString": "type(enum StateTransV2.Stage)"
+																		}
+																	},
+																	"id": 44,
+																	"isConstant": false,
+																	"isLValue": false,
+																	"isPure": true,
+																	"lValueRequested": false,
+																	"memberName": "Init",
+																	"nodeType": "MemberAccess",
+																	"referencedDeclaration": null,
+																	"src": "438:10:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"src": "429:19:0",
+																"typeDescriptions": {
+																	"typeIdentifier": "t_bool",
+																	"typeString": "bool"
+																}
+															},
+															"falseBody": null,
+															"id": 53,
+															"nodeType": "IfStatement",
+															"src": "426:51:0",
+															"trueBody": {
+																"id": 52,
+																"nodeType": "Block",
+																"src": "449:28:0",
+																"statements": [
+																	{
+																		"expression": {
+																			"argumentTypes": null,
+																			"id": 49,
+																			"isConstant": false,
+																			"isLValue": false,
+																			"isPure": false,
+																			"lValueRequested": false,
+																			"leftHandSide": {
+																				"argumentTypes": null,
+																				"id": 46,
+																				"name": "stage",
+																				"nodeType": "Identifier",
+																				"overloadedDeclarations": [],
+																				"referencedDeclaration": 8,
+																				"src": "450:5:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"nodeType": "Assignment",
+																			"operator": "=",
+																			"rightHandSide": {
+																				"argumentTypes": null,
+																				"expression": {
+																					"argumentTypes": null,
+																					"id": 47,
+																					"name": "Stage",
+																					"nodeType": "Identifier",
+																					"overloadedDeclarations": [],
+																					"referencedDeclaration": 6,
+																					"src": "458:5:0",
+																					"typeDescriptions": {
+																						"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																						"typeString": "type(enum StateTransV2.Stage)"
+																					}
+																				},
+																				"id": 48,
+																				"isConstant": false,
+																				"isLValue": false,
+																				"isPure": true,
+																				"lValueRequested": false,
+																				"memberName": "Reg",
+																				"nodeType": "MemberAccess",
+																				"referencedDeclaration": null,
+																				"src": "458:9:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"src": "450:17:0",
+																			"typeDescriptions": {
+																				"typeIdentifier": "t_enum$_Stage_$6",
+																				"typeString": "enum StateTransV2.Stage"
+																			}
+																		},
+																		"id": 50,
+																		"nodeType": "ExpressionStatement",
+																		"src": "450:17:0"
+																	},
+																	{
+																		"expression": null,
+																		"functionReturnParameters": 27,
+																		"id": 51,
+																		"nodeType": "Return",
+																		"src": "469:7:0"
+																	}
+																]
+															}
+														},
+														{
+															"condition": {
+																"argumentTypes": null,
+																"commonType": {
+																	"typeIdentifier": "t_enum$_Stage_$6",
+																	"typeString": "enum StateTransV2.Stage"
+																},
+																"id": 57,
+																"isConstant": false,
+																"isLValue": false,
+																"isPure": false,
+																"lValueRequested": false,
+																"leftExpression": {
+																	"argumentTypes": null,
+																	"id": 54,
+																	"name": "stage",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 8,
+																	"src": "494:5:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"nodeType": "BinaryOperation",
+																"operator": "==",
+																"rightExpression": {
+																	"argumentTypes": null,
+																	"expression": {
+																		"argumentTypes": null,
+																		"id": 55,
+																		"name": "Stage",
+																		"nodeType": "Identifier",
+																		"overloadedDeclarations": [],
+																		"referencedDeclaration": 6,
+																		"src": "503:5:0",
+																		"typeDescriptions": {
+																			"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																			"typeString": "type(enum StateTransV2.Stage)"
+																		}
+																	},
+																	"id": 56,
+																	"isConstant": false,
+																	"isLValue": false,
+																	"isPure": true,
+																	"lValueRequested": false,
+																	"memberName": "Reg",
+																	"nodeType": "MemberAccess",
+																	"referencedDeclaration": null,
+																	"src": "503:9:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"src": "494:18:0",
+																"typeDescriptions": {
+																	"typeIdentifier": "t_bool",
+																	"typeString": "bool"
+																}
+															},
+															"falseBody": null,
+															"id": 65,
+															"nodeType": "IfStatement",
+															"src": "491:52:0",
+															"trueBody": {
+																"id": 64,
+																"nodeType": "Block",
+																"src": "513:30:0",
+																"statements": [
+																	{
+																		"expression": {
+																			"argumentTypes": null,
+																			"id": 61,
+																			"isConstant": false,
+																			"isLValue": false,
+																			"isPure": false,
+																			"lValueRequested": false,
+																			"leftHandSide": {
+																				"argumentTypes": null,
+																				"id": 58,
+																				"name": "stage",
+																				"nodeType": "Identifier",
+																				"overloadedDeclarations": [],
+																				"referencedDeclaration": 8,
+																				"src": "515:5:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"nodeType": "Assignment",
+																			"operator": "=",
+																			"rightHandSide": {
+																				"argumentTypes": null,
+																				"expression": {
+																					"argumentTypes": null,
+																					"id": 59,
+																					"name": "Stage",
+																					"nodeType": "Identifier",
+																					"overloadedDeclarations": [],
+																					"referencedDeclaration": 6,
+																					"src": "523:5:0",
+																					"typeDescriptions": {
+																						"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																						"typeString": "type(enum StateTransV2.Stage)"
+																					}
+																				},
+																				"id": 60,
+																				"isConstant": false,
+																				"isLValue": false,
+																				"isPure": true,
+																				"lValueRequested": false,
+																				"memberName": "Vote",
+																				"nodeType": "MemberAccess",
+																				"referencedDeclaration": null,
+																				"src": "523:10:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"src": "515:18:0",
+																			"typeDescriptions": {
+																				"typeIdentifier": "t_enum$_Stage_$6",
+																				"typeString": "enum StateTransV2.Stage"
+																			}
+																		},
+																		"id": 62,
+																		"nodeType": "ExpressionStatement",
+																		"src": "515:18:0"
+																	},
+																	{
+																		"expression": null,
+																		"functionReturnParameters": 27,
+																		"id": 63,
+																		"nodeType": "Return",
+																		"src": "535:7:0"
+																	}
+																]
+															}
+														},
+														{
+															"condition": {
+																"argumentTypes": null,
+																"commonType": {
+																	"typeIdentifier": "t_enum$_Stage_$6",
+																	"typeString": "enum StateTransV2.Stage"
+																},
+																"id": 69,
+																"isConstant": false,
+																"isLValue": false,
+																"isPure": false,
+																"lValueRequested": false,
+																"leftExpression": {
+																	"argumentTypes": null,
+																	"id": 66,
+																	"name": "stage",
+																	"nodeType": "Identifier",
+																	"overloadedDeclarations": [],
+																	"referencedDeclaration": 8,
+																	"src": "560:5:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"nodeType": "BinaryOperation",
+																"operator": "==",
+																"rightExpression": {
+																	"argumentTypes": null,
+																	"expression": {
+																		"argumentTypes": null,
+																		"id": 67,
+																		"name": "Stage",
+																		"nodeType": "Identifier",
+																		"overloadedDeclarations": [],
+																		"referencedDeclaration": 6,
+																		"src": "569:5:0",
+																		"typeDescriptions": {
+																			"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																			"typeString": "type(enum StateTransV2.Stage)"
+																		}
+																	},
+																	"id": 68,
+																	"isConstant": false,
+																	"isLValue": false,
+																	"isPure": true,
+																	"lValueRequested": false,
+																	"memberName": "Vote",
+																	"nodeType": "MemberAccess",
+																	"referencedDeclaration": null,
+																	"src": "569:10:0",
+																	"typeDescriptions": {
+																		"typeIdentifier": "t_enum$_Stage_$6",
+																		"typeString": "enum StateTransV2.Stage"
+																	}
+																},
+																"src": "560:19:0",
+																"typeDescriptions": {
+																	"typeIdentifier": "t_bool",
+																	"typeString": "bool"
+																}
+															},
+															"falseBody": null,
+															"id": 77,
+															"nodeType": "IfStatement",
+															"src": "557:53:0",
+															"trueBody": {
+																"id": 76,
+																"nodeType": "Block",
+																"src": "580:30:0",
+																"statements": [
+																	{
+																		"expression": {
+																			"argumentTypes": null,
+																			"id": 73,
+																			"isConstant": false,
+																			"isLValue": false,
+																			"isPure": false,
+																			"lValueRequested": false,
+																			"leftHandSide": {
+																				"argumentTypes": null,
+																				"id": 70,
+																				"name": "stage",
+																				"nodeType": "Identifier",
+																				"overloadedDeclarations": [],
+																				"referencedDeclaration": 8,
+																				"src": "582:5:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"nodeType": "Assignment",
+																			"operator": "=",
+																			"rightHandSide": {
+																				"argumentTypes": null,
+																				"expression": {
+																					"argumentTypes": null,
+																					"id": 71,
+																					"name": "Stage",
+																					"nodeType": "Identifier",
+																					"overloadedDeclarations": [],
+																					"referencedDeclaration": 6,
+																					"src": "590:5:0",
+																					"typeDescriptions": {
+																						"typeIdentifier": "t_type$_t_enum$_Stage_$6_$",
+																						"typeString": "type(enum StateTransV2.Stage)"
+																					}
+																				},
+																				"id": 72,
+																				"isConstant": false,
+																				"isLValue": false,
+																				"isPure": true,
+																				"lValueRequested": false,
+																				"memberName": "Done",
+																				"nodeType": "MemberAccess",
+																				"referencedDeclaration": null,
+																				"src": "590:10:0",
+																				"typeDescriptions": {
+																					"typeIdentifier": "t_enum$_Stage_$6",
+																					"typeString": "enum StateTransV2.Stage"
+																				}
+																			},
+																			"src": "582:18:0",
+																			"typeDescriptions": {
+																				"typeIdentifier": "t_enum$_Stage_$6",
+																				"typeString": "enum StateTransV2.Stage"
+																			}
+																		},
+																		"id": 74,
+																		"nodeType": "ExpressionStatement",
+																		"src": "582:18:0"
+																	},
+																	{
+																		"expression": null,
+																		"functionReturnParameters": 27,
+																		"id": 75,
+																		"nodeType": "Return",
+																		"src": "602:7:0"
+																	}
+																]
+															}
+														},
+														{
+															"expression": null,
+															"functionReturnParameters": 27,
+															"id": 78,
+															"nodeType": "Return",
+															"src": "624:7:0"
+														}
+													]
+												}
+											}
+										]
+									},
+									"documentation": null,
+									"id": 82,
+									"implemented": true,
+									"isConstructor": false,
+									"isDeclaredConst": false,
+									"modifiers": [],
+									"name": "advanceState",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 26,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "293:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 27,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "302:0:0"
+									},
+									"scope": 83,
+									"src": "272:377:0",
+									"stateMutability": "nonpayable",
+									"superFunction": null,
+									"visibility": "public"
+								}
+							],
+							"scope": 84,
+							"src": "27:625:0"
+						}
+					],
+					"src": "0:652:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
